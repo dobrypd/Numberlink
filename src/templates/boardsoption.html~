@@ -1,0 +1,9 @@
+	<p>
+		<p id="boardName" style="text-align:center;">Wybierz poniżej</p>
+		<form id="formBoardChange" style="text-align:center;">
+			<select name="boardSelect" id="boardSelectOPT">
+				<option selected="selected">Podstawowa</option>
+			</select>
+		</form>
+		
+	</p>

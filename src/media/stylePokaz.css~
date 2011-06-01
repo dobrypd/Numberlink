@@ -1,0 +1,190 @@
+﻿@charset "utf-8";
+body{
+   background-color: #000000;
+   background-repeat: repeat-y;
+   background-image: url("grafika/tlo.jpg");
+   background-position: center;
+   
+   margin: 0px;
+   padding: 0px;
+   font-family: Georgia, "Times New Roman", Times, serif;
+   font-size: small;
+   color: #D3D3D3;
+}
+
+a{
+   text-decoration: none;
+   color: #000000;
+   margin: 0;
+   padding: 0;
+   text-decoration: none;
+   border: 0px;
+}
+a:hover{
+   color: #ffffff;
+}
+
+#szukaj {
+   z-index: 3;
+   margin: 20px auto auto -290px;
+   position: absolute;
+   top: 0px;
+   left: 50%;
+   height: 154px;
+   width: 579px;
+   background: url("grafika/szukaj.png") 0 0 scroll no-repeat;
+   color: #333;
+}
+.przycisk{
+	width: 40px;
+	height: 40px;
+	border: 0px;
+	margin: 0px 10px 0px 10px;
+	padding: 0px;
+}
+
+#menuOBR{
+   position:absolute; 
+   width: 510px;
+   height:41px;
+   bottom:30px; 
+   left: 33px;
+   text-align:center;
+}
+#calosc{
+	position:relative;
+	width: 700px;
+	height: auto;
+	margin: 10px auto auto -350px;
+	left: 50%;
+}
+#gora {
+	margin: 0px;
+	padding: 0px;
+	background-repeat: no-repeat;
+        background-image: url("grafika/gora.png");
+	width: 700px;
+	height: 65px;
+	
+}
+#dol {
+	margin: 0px;
+	padding: 0px;
+        background-image: url("grafika/dol.png");
+	width: 700px;
+	height: 45px;
+	text-align:center;
+	color: #cccccc;
+	font-size: 9px;
+}
+#nadole {
+   position:relative;
+   bottom:0px;
+   text-align:center;
+   color: #cccccc;
+   font-size: 9px;
+}
+
+#srod{
+	position:relative;
+	margin: 0px;
+	padding: 60px 0px 0px 0px;
+	background-repeat: repeat-y;
+        background-image: url("grafika/srodek.png");
+	width: 700px;
+	height: 100%;
+}
+#tekst a{
+	color: #555555;
+}
+#tekst a:hover{
+	color: #888888;
+}
+#tekst p {
+   text-indent: 10px;
+   text-align: justify;
+}
+#tekst H2, H3{
+   font-variant:small-caps;
+	font-family: cursive;
+	text-align:center;
+   text-shadow: 2px 2px 2px #dddddd
+	/*zrobic tu kalitalki*/
+}
+#tekst H3{
+   text-align:left;
+}
+#tekst{
+	padding: 15px 30px 15px 30px;
+	color: #222222;
+}
+#tekstStatLewy{
+   position:absolute; 
+   bottom:20px; 
+   left: 25px;
+   font-family: arial;
+   font-size: 11px;
+   color: #AAAAAA;
+}
+#tekstStatPrawy{
+   text-align:right;
+   position:absolute; 
+   bottom:20px; 
+   right: 25px;
+   font-family: arial;
+   font-size: 11px;
+   color: #AAAAAA;
+}
+
+/*tabele*/
+#pierwszy{
+   font-weight:bold;
+   text-align:right;
+   width:10px;
+}
+table{
+   position:relative;
+   margin-left:-45%;
+   left:50%;
+   table-layout: auto; 
+   width: 90%;
+   text-align:center;
+   border-collapse:collapse;
+   border-width:2px 0px;
+   border-style: solid;
+   border-color: #777777;
+   empty-cells:show;
+}
+tr{
+   border-color: #bbbbbb;
+   border-width:1px 0px;
+   border-style:solid;
+   width: 90%;
+}
+td{
+   /*width: 100%;*/
+   overflow:hidden;
+}
+
+#logo{
+    font-variant:small-caps;
+    font-family:monospace;
+    text-align:center;
+    text-shadow:2px 2px 2px #aaaaaa;
+    font-size:40px;
+    position: relative;
+    margin-top: 50px;
+}
+
+
+.ukryty {
+   display: none;
+}
+
+#GameBoard {
+  display: none;
+}
+
+#MainMenu {
+  display: none;
+}

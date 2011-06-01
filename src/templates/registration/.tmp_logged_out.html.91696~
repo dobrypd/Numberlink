@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block text %}
+<table>
+<tr>
+  <td>
+    <h3>Zostałeś wylogowany</h3>
+    <p>Dziękujemy za odwiedzenie serwisu.</p>
+  </td>
+</tr>
+</table>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block text %}
+<div id = "MainDIV">
+Najlepsze wyniki
+<table>
+<tr>
+    <td>Plansza</td> <td>Użytkownik</td> <td>Czas</td>
+</tr>
+{% for score in scores %}
+<tr>
+    <td>{{ score.0 }}</td> <td>{{ score.1 }}</td> <td>{{ score.2 }}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}
