@@ -1,6 +1,0 @@
-/**
- * @author piotrek
- */
-
-
-

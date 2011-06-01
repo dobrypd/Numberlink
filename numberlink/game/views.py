@@ -39,7 +39,7 @@ def highscores(request):
     else:   
         scores = []
         for s in  Score.objects.all():
-            scores.append((s.board_id, s.user_id, s.time_s))
+            scores.append((Board.objects.get(id = s.board_id).name, User.objects.get(id = s.user_id).username, str(s.time_s) + 's'))
 
         return render_to_response('highscores.html', 
                 {'title': 'Najlepsze wyniki', 'scores': scores}
