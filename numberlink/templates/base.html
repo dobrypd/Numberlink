@@ -8,12 +8,12 @@
 <meta name="author" content="Piotr Dobrwolski"/>
 <meta name="language" content="pl" />
 <meta name="robots" content="all" />
-<link rel="shortcut icon" href="media/favicon.ico" />
-<link rel="stylesheet" type="text/css" href="media/stylePokaz.css" media="screen" title="Styl podstawowy" />
+<link rel="shortcut icon" href="/static/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/static/stylePokaz.css" media="screen" title="Styl podstawowy" />
 <title> {{ title }} | numberlink</title>
 
-<script type="text/javascript" src="media/jquery.js"></script>
-<script type="text/javascript" src="media/jquery.ba-bbq.js"></script>
+<script type="text/javascript" src="/static/jquery.js"></script>
+<script type="text/javascript" src="/static/jquery.ba-bbq.js"></script>
 {% block scripts %}
 {% endblock %}
 </head>
@@ -22,7 +22,7 @@
     <div id="calosc">
     <div id="szukaj"> 
         {% block header %}
-            <a href="{% url views.main %}"><p id="logo">NUMBERLINK</p></a>
+            <a href="{% url main.views.main %}"><p id="logo">NUMBERLINK</p></a>
             <p id="tekstStatPrawy">numberlink by Piotr Dobrowolski </p>
             
             

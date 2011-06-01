@@ -2,7 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 
 #numberlink views
-from numberlink.views import main
+from numberlink.main.views import main
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -23,15 +23,16 @@ urlpatterns = patterns('',
 
     #authorisation
     url(r'^accounts/login/', 'django.contrib.auth.views.login'),
-    url(r'^accounts/ajaxlogin/$',  'numberlink.views.loginajax'),
+    url(r'^accounts/ajaxlogin/$',  'numberlink.main.views.loginajax'),
     url(r'^accounts/logout/', 'django.contrib.auth.views.logout'),
 )
 
-#pozwalaj na takie wylacznie dla DEBUG (gdy startuje z manage.py runserver)
-#normalnie oblugiwane przez serwer
 if settings.DEBUG:
     urlpatterns += patterns('',
-        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', 
-            {'document_root': settings.MEDIA_ROOT, 
-            'show_indexes':True}),
+    	url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
+        	{'document_root': settings.STATIC_ROOT,
+	        'show_indexes':True}),
+    	url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+    	    {'document_root': settings.MEDIA_ROOT,
+	        'show_indexes':True}),
     )
