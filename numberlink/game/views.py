@@ -9,7 +9,7 @@ from django.views.decorators.cache import cache_page
 from game.models import Board, Score
 import datetime
 
-@cache_page(60 * 5)
+###@cdfche_page(60 * 5)
 def highscores(request):
     if request.method == 'POST':
         uname = request.user.username
@@ -26,6 +26,7 @@ def highscores(request):
         time_sec = int(time)
         #1sprawdz czy jest najlepszy
         try: 
+            #niezmiennik (jest tylko jeden old (tylko tutaj go zmieniam))
             old = Score.objects.get(board = b)
         except Score.DoesNotExist:
             s = Score(user=u, board = b, time_s = time_sec, date = datetime.datetime.now())
@@ -34,13 +35,15 @@ def highscores(request):
         if (old.time_s > time_sec):
             s = Score(user=u, board = b, time_s = time_sec, date = datetime.datetime.now())
             s.save()
+            #delete old
+            old.delete()
             return HttpResponse(simplejson.dumps(True), mimetype='application/json')
         else:
             return HttpResponse(simplejson.dumps(False), mimetype='application/json')
     else:   
         scores = []
-        for s in  Score.objects.all():
-            scores.append((Board.objects.get(id = s.board_id).name, User.objects.get(id = s.user_id).username, str(s.time_s) + 's'))
+        for s in  Score.objects.order_by('time_s'):
+            scores.append((s.board.name, s.user, str(s.time_s) + 's'))
 
         return render_to_response('highscores.html', 
                 {'title': 'Najlepsze wyniki', 'scores': scores}

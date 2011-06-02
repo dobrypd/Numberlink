@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'numberlink.game',
     'numberlink.main',
+    'numberlink.contest',
     'socialauth',
     'openid_consumer',
 )

@@ -11,6 +11,8 @@ class Board(models.Model):
     def json(self):
         return simplejson.dumps({'name':self.name, 'description':self.description,
                 'width':self.width, 'height': self.height})
+    def __unicode__(self):
+        return self.name;
 
 #2. wyniki
 class Score(models.Model):
@@ -18,3 +20,6 @@ class Score(models.Model):
     board = models.ForeignKey(Board)
     time_s = models.IntegerField()
     date = models.DateField()
+
+    def __unicode__(self):
+        return str(self.contest) + '-> '+ str(self.user) + ' on ' + str(self.board)
