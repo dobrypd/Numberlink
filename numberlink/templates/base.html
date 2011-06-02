@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -22,7 +21,7 @@
     <div id="calosc">
     <div id="szukaj"> 
         {% block header %}
-            <a href="{% url main.views.main %}"><p id="logo">NUMBERLINK</p></a>
+            <a href="#"><p id="logo">NUMBERLINK</p></a>
             <p id="tekstStatPrawy">numberlink by Piotr Dobrowolski </p>
         {% endblock %}
     </div>
@@ -31,6 +30,7 @@
         <div id="tekst">
             <h2> {{ title }} </h2>
             <hr />
+
             {% block text %}
                 Przykładowy tekst.
             {% endblock %}

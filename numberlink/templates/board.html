@@ -1,26 +1,27 @@
-{% extends "base.html" %}
 
-{% block scripts %}
+        <SCRIPT LANGUAGE="JAVASCRIPT" TYPE="TEXT/JAVASCRIPT">
+        <!--
 
-		<script type="text/javascript" src="/static/umberlink/numberlink.js"></script>
-		<script type="text/javascript" src="/static/numberlink/board.js"></script>
-		<script type="text/javascript" src="/static/numberlink/mousedrag.js"></script>
-		<link rel="stylesheet" type="text/css" href="/static/numberlink/style.css" media="screen" title="Styl podstawowy" />
-		
-{% endblock %}
+            $(document).ready(function(){
+                    wantBoard();
+            });
 
-{% block text %}
-<div id = "MainDIV">
+        //-->
+        </SCRIPT>
+        
+        {% include "menu.html" %}
 
-<div id="boardsoptions"></div>
+        <div id="boardsoptions"></div>
 	
-	<div class="button"><a href="#" id="check">Sprawdź</a></div>
+        <div class="button"><a href="#" id="check">Sprawdź</a></div>
 	<div class="button"><a href="#" id="reset">Wyczyść</a></div>	
-    <div class="all">
+
+
+        <div class="all">
 		<div class="game">
 	    	<div id="board"></div>
 		</div>
-    </div>
+        </div>
 
 	<p style="text-align:center;">
 		Czs gry: <span id="time">0s</span>
@@ -28,7 +29,3 @@
 		Najlepszy: <span id="bestTime">brak</span>
 	</p>
 	<hr />
-	
-</div>
-		
-{% endblock %}

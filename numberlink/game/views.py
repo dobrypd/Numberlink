@@ -33,10 +33,9 @@ def highscores(request):
             s.save()
             return HttpResponse(simplejson.dumps(True), mimetype='application/json')
         if (old.time_s > time_sec):
-            s = Score(user=u, board = b, time_s = time_sec, date = datetime.datetime.now())
-            s.save()
-            #delete old
             old.delete()
+            s = Score(user = u, board = b, time_s = time_sec, date = datetime.datetime.now())
+            s.save()
             return HttpResponse(simplejson.dumps(True), mimetype='application/json')
         else:
             return HttpResponse(simplejson.dumps(False), mimetype='application/json')

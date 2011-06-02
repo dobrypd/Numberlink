@@ -22,6 +22,8 @@ urlpatterns = patterns('',
     url(r'^highscores/', 'numberlink.game.views.highscores'),
 
     #authorisation
+    url(r'^accounts/profile/$', main),
+    url(r'^accounts/external/profile/$', main),
     url(r'^accounts/login/', 'django.contrib.auth.views.login'),
     url(r'^accounts/ajaxlogin/$',  'numberlink.main.views.loginajax'),
     url(r'^accounts/logout/', 'django.contrib.auth.views.logout'),

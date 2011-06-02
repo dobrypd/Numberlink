@@ -1,39 +1,51 @@
-{% extends "base.html" %}
+        <SCRIPT LANGUAGE="JAVASCRIPT" TYPE="TEXT/JAVASCRIPT">
+        <!--
 
-{% block text %}
-<div id = "MainDIV">
-{% if form.errors %}
-<p>Nazwa użytkownika lub hasło się nie zgadzają. Spróbuj ponownie.</p>
-{% endif %}
+            $(document).ready(function(){
+                    wantLogin();
+            });
 
-<form method="post" action="{% url django.contrib.auth.views.login %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-<tr>
-  <td rowspan = 2>
-  	Czy utworzyć: <input type="checkbox" name="isnew" id="isnew">
-	<input type="submit" value="Zaloguj" />
-  <input type="hidden" name="next" value="{{ next }}" /></td>
-</tr>
+        //-->
+        </SCRIPT>
+        
+    
+    {% include "menu.html" %}
 
-</table>
-</form>
+    {% if form.errors %}
+        <p>Nazwa użytkownika lub hasło się nie zgadzają. Spróbuj ponownie.</p>
+    {% endif %}
 
-<p>Zaloguj za pomocą:</p>
-</ul>
-<li><a href="/accounts/external/facebook_login">facebook</a></li>
-<li><a href="/accounts/external/openid/">openID</a></li>
-<li><a href="/accounts/external/twiter_login">twitter</a></li>
-<li><a href="/accounts/external/linkedin_login">linkedin</a></li>
-<li><a href="/accounts/external/yahoo_login">yahoo</a></li>
-<li><a href="/accounts/external/gmail_login">gmail</a></li>
-</div>
-{% endblock %}
+    <form method="post" action="{% url django.contrib.auth.views.login %}">
+    {% csrf_token %}
+        <table>
+        <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+        <tr>
+          <td rowspan = 2>
+          	Czy utworzyć: <input type="checkbox" name="isnew" id="isnew">
+        	<input type="submit" value="Zaloguj" />
+          <input type="hidden" name="next" value="{{ next }}" /></td>
+        </tr>
+        
+        </table>
+    </form>
+
+    <p style="text-align:center;">Zaloguj za pomocą:
+        <a href="#/accounts/external/facebook_login">facebook</a> 
+        <span class="pipe">|</span>
+        <a href="#/accounts/external/openid/">openID</a>
+        <span class="pipe">|</span>
+        <a href="#/accounts/external/twitter_login">twitter</a>
+        <span class="pipe">|</span>
+        <a href="#/accounts/external/linkedin_login">linkedin</a>
+        <span class="pipe">|</span>
+        <a href="#/accounts/external/yahoo_login">yahoo</a>
+        <span class="pipe">|</span>
+        <a href="#/accounts/external/gmail_login">gmail</a>
+    </p>

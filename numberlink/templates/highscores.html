@@ -1,17 +1,15 @@
-{% extends "base.html" %}
+        {% include "menu.html" %}
 
-{% block text %}
-<div id = "MainDIV">
-Najlepsze wyniki
-<table>
-<tr>
-    <td>Plansza</td> <td>Użytkownik</td> <td>Czas</td>
-</tr>
-{% for score in scores %}
-<tr>
-    <td><strong>{{ score.0 }}</strong></td> <td>{{ score.1 }}</td> <td>{{ score.2 }}</td>
-</tr>
-{% endfor %}
-</table>
-</div>
-{% endblock %}
+        Najlepsze wyniki
+
+
+        <table>
+        <tr>
+            <td>Plansza</td> <td>Użytkownik</td> <td>Czas</td>
+        </tr>
+            {% for score in scores %}
+                <tr>
+                    <td><strong>{{ score.0 }}</strong></td> <td>{{ score.1 }}</td> <td>{{ score.2 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
