@@ -4,10 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.utils import simplejson
 from django.http import Http404
 from django.contrib.auth.models import User
+from django.views.decorators.cache import cache_page
 
 from game.models import Board, Score
 import datetime
 
+@cache_page(60 * 5)
 def highscores(request):
     if request.method == 'POST':
         uname = request.user.username
@@ -22,7 +24,6 @@ def highscores(request):
         except Board.DoesNotExist:
             raise Http404
         time_sec = int(time)
-        import datetime
         #1sprawdz czy jest najlepszy
         try: 
             old = Score.objects.get(board = b)

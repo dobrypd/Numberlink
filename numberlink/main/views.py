@@ -9,6 +9,8 @@ from django.contrib import auth
 from django.utils import simplejson
 from django.http import HttpResponse
 
+import datetime
+from time import strftime, gmtime
 
 def main(request):
     """Cała zabawa - jeddyna strona ładowana
@@ -25,6 +27,8 @@ def logina(uname, upas, request):
         auth.login(request, user)
         if request.session.test_cookie_worked():
             request.session.delete_test_cookie()
+            request.session['user'] = user.username
+            request.session['logintime'] = strftime("%a, %d %b %Y %H:%M:%S", gmtime())
         return True
     return False
 
