@@ -61,12 +61,20 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "socialauth.context_processors.facebook_api_key",
+    'django.core.context_processors.media',
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.request",
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'openid_consumer.middleware.OpenIDMiddleware',
 )
 
 ROOT_URLCONF = 'numberlink.urls'
@@ -85,5 +93,11 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'numberlink.game',
     'numberlink.main',
+    'socialauth',
+    'openid_consumer',
 )
 
+try:
+    from localsettings import *
+except ImportError:
+    pass

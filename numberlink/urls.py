@@ -25,6 +25,8 @@ urlpatterns = patterns('',
     url(r'^accounts/login/', 'django.contrib.auth.views.login'),
     url(r'^accounts/ajaxlogin/$',  'numberlink.main.views.loginajax'),
     url(r'^accounts/logout/', 'django.contrib.auth.views.logout'),
+    #external authorisation via facebook, openid etc.
+    url(r'^accounts/external/', include('socialauth.urls')),
 )
 
 if settings.DEBUG:
