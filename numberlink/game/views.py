@@ -7,11 +7,16 @@ from django.contrib.auth.models import User
 from django.views.decorators.cache import cache_page
 from django.template import RequestContext
 from game.models import Board, Score
+from contest.models import Contest
 from main.views import contests
 import datetime
 
-@cache_page(60 * 5)
+@cache_pae(60 * 5)
 def highscores(request, contest):
+    try:
+        c = Contest.objects.get(id = contest)
+    except Contest.DoesNotExist:
+        raise Http404
     if request.method == 'POST':
         uname = request.user.username
         bname = request.POST['boardname']
@@ -28,21 +33,23 @@ def highscores(request, contest):
         #1sprawdz czy jest najlepszy
         try: 
             #niezmiennik (jest tylko jeden old (tylko tutaj go zmieniam))
-            old = Score.objects.get(board = b)
+            old = c.score.get(board = b)
         except Score.DoesNotExist:
             s = Score(user=u, board = b, time_s = time_sec, date = datetime.datetime.now())
             s.save()
+            c.highscores.add(s)
             return HttpResponse(simplejson.dumps(True), mimetype='application/json')
         if (old.time_s > time_sec):
             old.delete()
-            s = Score(user = u, board = b, time_s = time_sec, date = datetime.datetime.now())
+            s = c.highscores(user = u, board = b, time_s = time_sec, date = datetime.datetime.now())
             s.save()
+            c.highscores.add(s)
             return HttpResponse(simplejson.dumps(True), mimetype='application/json')
         else:
             return HttpResponse(simplejson.dumps(False), mimetype='application/json')
     else:   
         scores = []
-        for s in  Score.objects.order_by('time_s'):
+        for s in  c.highscores.order_by('time_s'):
             scores.append((s.board.name, s.user, str(s.time_s) + 's'))
 
         return render_to_response('highscores.html', 
@@ -67,7 +74,7 @@ def board(request, boardname):
         )
 
 @login_required
-def boardlist(request, contest = 0):
+def boardlist(request, contest = 1):
     option = request.GET.has_key('options')
     if option:
         boardsnames = []
@@ -75,6 +82,6 @@ def boardlist(request, contest = 0):
             boardsnames.append(b.name)
         return render_to_response('boardsoption.html', {'boardsnames': boardsnames})
     return render_to_response('board.html',
-            {'title': 'Gra', 'contests':contests()}, context_instance=RequestContext(request)
-
+            {'title': 'Gra', 'contest':contest, 
+            'contests':contests()}, context_instance=RequestContext(request)
         )
