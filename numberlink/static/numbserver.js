@@ -54,7 +54,7 @@ $('html').ajaxSend(function(event, xhr, settings) {
 });
 
 var wantBoard = function() {
-	$("#boardsoptions").load('/board/?options', function(response, status, xhr) {
+	$("#boardsoptions").load('/boards/?options', function(response, status, xhr) {
 		if (status == "error") {
 			var msg = "Wystąpił błąd podczas ładowania: ";
 			$("#boardsoptions").html(msg + xhr.status + " " + xhr.statusText);

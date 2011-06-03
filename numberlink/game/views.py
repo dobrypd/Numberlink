@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.cache import cache_page
 
 from game.models import Board, Score
+from main.views import contests
 import datetime
 
 @cache_page(60 * 5)
@@ -45,7 +46,7 @@ def highscores(request, contest):
             scores.append((s.board.name, s.user, str(s.time_s) + 's'))
 
         return render_to_response('highscores.html', 
-                {'title': 'Najlepsze wyniki', 'scores': scores}
+                {'title': 'Najlepsze wyniki', 'scores': scores, 'contests':contests()}
             )
 
 @login_required
@@ -65,7 +66,7 @@ def board(request, boardname):
         )
 
 @login_required
-def boardlist(request, contest):
+def boardlist(request, contest = 0):
     option = request.GET.has_key('options')
     if option:
         boardsnames = []
@@ -73,5 +74,5 @@ def boardlist(request, contest):
             boardsnames.append(b.name)
         return render_to_response('boardsoption.html', {'boardsnames': boardsnames})
     return render_to_response('board.html',
-            {'title': 'Gra'}
+            {'title': 'Gra', 'contests':contests()}
         )

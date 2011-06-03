@@ -14,18 +14,19 @@ from numberlink.contest.models import Contest
 import datetime
 from time import strftime, gmtime
 
+def contests():
+    contests_list = []
+    for c in Contest.objects.all():
+        contests_list.append((c.id, c.name))
+    return contests_list
+
 def main(request):
     """Cała zabawa - jeddyna strona ładowana
        reszta jest ładowana za pomocą AJAX'a
     """
     
-    ##moje konkursy
-    contests = []
-    for c in Contest.objects.all():
-        contests.append((c.id, c.name))
-
     return render_to_response('main.html', 
-            {'title':'Witaj!', 'contests':contests}
+            {'title':'Witaj!', 'contests':contests()}
         );
 
 def logina(uname, upas, request):

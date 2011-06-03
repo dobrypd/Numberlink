@@ -4,7 +4,7 @@ numberlink
 (c) by Piotr Dobrowolski
 June 2011
 
-required libs: socialauth, python-facebook, python-openid, oauth, pylinkedin
+required libs: socialauth, python-facebook, python-openid, oauth
 
 ###############################################################################
 socialauth and openid_consumer:

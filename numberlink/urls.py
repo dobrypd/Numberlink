@@ -18,8 +18,11 @@ urlpatterns = patterns('',
     #numberlink game
     url(r'^boards/(?P<contest>\d+)/$', 'numberlink.game.views.boardlist'),
     url(r'^board/([A-Za-z]+)/$', 'numberlink.game.views.board'),
-#url(r'^board/$', 'numberlink.game.views.boardlist'),
+    url(r'^boards/$', 'numberlink.game.views.boardlist'),
     url(r'^highscores/(?P<contest>\d+)/$', 'numberlink.game.views.highscores'),
+
+    #contest
+    url(r'^contest/add/$', 'numberlink.contest.views.add'),
 
     #authorisation
     url(r'^accounts/profile/$', main),
