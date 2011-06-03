@@ -17,14 +17,14 @@ from time import strftime, gmtime
 def contests():
     contests_list = []
     for c in Contest.objects.all():
-        contests_list.append((c.id, c.name))
+        if (c.start_date):
+            if (c.is_private):
+                contests_list.append((c.id, str(c.name + '-priv')))
+            else:
+                contests_list.append((c.id, c.name))
     return contests_list
 
 def main(request):
-    """Cała zabawa - jeddyna strona ładowana
-       reszta jest ładowana za pomocą AJAX'a
-    """
-    
     return render_to_response('main.html', 
             {'title':'Witaj!', 'contests':contests()}
         );
