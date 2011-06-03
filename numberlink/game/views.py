@@ -9,8 +9,8 @@ from django.views.decorators.cache import cache_page
 from game.models import Board, Score
 import datetime
 
-###@cdfche_page(60 * 5)
-def highscores(request):
+@cache_page(60 * 5)
+def highscores(request, contest):
     if request.method == 'POST':
         uname = request.user.username
         bname = request.POST['boardname']
@@ -65,7 +65,7 @@ def board(request, boardname):
         )
 
 @login_required
-def boardlist(request):
+def boardlist(request, contest):
     option = request.GET.has_key('options')
     if option:
         boardsnames = []

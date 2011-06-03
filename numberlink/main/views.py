@@ -9,6 +9,8 @@ from django.contrib import auth
 from django.utils import simplejson
 from django.http import HttpResponse
 
+from numberlink.contest.models import Contest
+
 import datetime
 from time import strftime, gmtime
 
@@ -17,8 +19,13 @@ def main(request):
        reszta jest ładowana za pomocą AJAX'a
     """
     
+    ##moje konkursy
+    contests = []
+    for c in Contest.objects.all():
+        contests.append((c.id, c.name))
+
     return render_to_response('main.html', 
-            {'title':'Witaj!'}
+            {'title':'Witaj!', 'contests':contests}
         );
 
 def logina(uname, upas, request):

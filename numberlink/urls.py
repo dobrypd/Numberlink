@@ -16,10 +16,10 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     #numberlink game
-    url(r'^boards$', 'numberlink.game.views.boardlist'),
+    url(r'^boards/(?P<contest>\d+)/$', 'numberlink.game.views.boardlist'),
     url(r'^board/([A-Za-z]+)/$', 'numberlink.game.views.board'),
-    url(r'^board/$', 'numberlink.game.views.boardlist'),
-    url(r'^highscores/', 'numberlink.game.views.highscores'),
+#url(r'^board/$', 'numberlink.game.views.boardlist'),
+    url(r'^highscores/(?P<contest>\d+)/$', 'numberlink.game.views.highscores'),
 
     #authorisation
     url(r'^accounts/profile/$', main),

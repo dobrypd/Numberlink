@@ -22,4 +22,4 @@ class Score(models.Model):
     date = models.DateField()
 
     def __unicode__(self):
-        return str(self.contest) + '-> '+ str(self.user) + ' on ' + str(self.board)
+        return  str(self.user) + ' on ' + str(self.board)

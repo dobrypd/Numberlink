@@ -13,3 +13,5 @@ class Contest(models.Model):
     guests = models.ManyToManyField(User, related_name="guest")
     highscores = models.ManyToManyField(Score)
     boards = models.ManyToManyField(Board)
+    def __unicode__(self):
+        return self.name
