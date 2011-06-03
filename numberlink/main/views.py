@@ -15,19 +15,29 @@ from numberlink.contest.models import Contest
 import datetime
 from time import strftime, gmtime
 
-def contests():
+def contests(user):
     contests_list = []
     for c in Contest.objects.all():
-        if (c.start_date):
-            if (c.is_private):
-                contests_list.append((c.id, str(c.name + '-priv')))
+        then = c.start_date
+        expire = c.expire_date
+        now = datetime.date.today()
+        expire_str = ' : trwa'
+        if (now > expire):
+            expire_str = ' : zakonczony'
+        if (now >= then):   #wyswietlaj tylko juz rozpoczete
+            if (c.is_private):  #wyswietlaj tylko jak jestem gosciem jestli prywatny
+                try:
+                    find = c.guests.get(id = user.id)
+                    contests_list.append((c.id, str(c.name + ' - prywatny' + expire_str)))
+                except :
+                    pass
             else:
-                contests_list.append((c.id, c.name))
+                contests_list.append((c.id, c.name + expire_str))
     return contests_list
 
 def main(request):
     return render_to_response('main.html', 
-            {'title':'Witaj!', 'contests':contests()}, context_instance=RequestContext(request)
+            {'title':'Witaj!', 'contests':contests(request.user)}, context_instance=RequestContext(request)
         );
 
 def logina(uname, upas, request):

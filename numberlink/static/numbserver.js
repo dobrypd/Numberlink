@@ -14,8 +14,6 @@ $(function(){
         $('.bbq-item').show()
         $( '.bbq-loading' ).hide();
       } else {
-//$( '<div class="bbq-item"/>' )
-//.appendTo( '.bbq-content' )
         $( '<div class="bbq-item"/>' )
         .appendTo( '.bbq-content' )
         
@@ -23,7 +21,6 @@ $(function(){
           $( '.bbq-loading' ).hide();
         })
         .show();
-//        wantBoard();
       }
   })
   
@@ -57,7 +54,7 @@ $('html').ajaxSend(function(event, xhr, settings) {
 });
 
 var wantBoard = function() {
-	$(".boardsoptions").load('/boards/?options', function(response, status, xhr) {
+	$(".boardsoptions").load('/boards/' + contest + '/?options', function(response, status, xhr) {
 		if (status == "error") {
 			var msg = "Wystąpił błąd podczas ładowania: ";
 			$(".boardsoptions").html(msg + xhr.status + " " + xhr.statusText);

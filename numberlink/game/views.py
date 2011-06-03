@@ -11,7 +11,7 @@ from contest.models import Contest
 from main.views import contests
 import datetime
 
-@cache_pae(60 * 5)
+@cache_page(60 * 5)
 def highscores(request, contest):
     try:
         c = Contest.objects.get(id = contest)
@@ -30,6 +30,11 @@ def highscores(request, contest):
         except Board.DoesNotExist:
             raise Http404
         time_sec = int(time)
+
+        #sprawdz czy konkurs jest jeszcze wazny!
+        if(c.expiredate < datetime.date.today()):
+            return HttpResponse(simplejson.dumps(False), mimetype='application/json')
+
         #1sprawdz czy jest najlepszy
         try: 
             #niezmiennik (jest tylko jeden old (tylko tutaj go zmieniam))
@@ -53,7 +58,7 @@ def highscores(request, contest):
             scores.append((s.board.name, s.user, str(s.time_s) + 's'))
 
         return render_to_response('highscores.html', 
-                {'title': 'Najlepsze wyniki', 'scores': scores, 'contests':contests()}, context_instance=RequestContext(request)
+                {'title': 'Najlepsze wyniki', 'scores': scores, 'contests':contests(request.user)}, context_instance=RequestContext(request)
             )
 
 @login_required
@@ -77,11 +82,15 @@ def board(request, boardname):
 def boardlist(request, contest = 1):
     option = request.GET.has_key('options')
     if option:
+        try:
+            c = Contest.objects.get(id = contest)
+        except Contest.DoesNotExist:
+            raise Http404
         boardsnames = []
-        for b in Board.objects.all():
-            boardsnames.append(b.name)
+        for b in c.boards.all():
+            boardsnames.append(str(b))
         return render_to_response('boardsoption.html', {'boardsnames': boardsnames})
     return render_to_response('board.html',
             {'title': 'Gra', 'contest':contest, 
-            'contests':contests()}, context_instance=RequestContext(request)
+            'contests':contests(request.user)}, context_instance=RequestContext(request)
         )

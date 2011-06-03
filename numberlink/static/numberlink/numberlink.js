@@ -278,7 +278,7 @@ function getBestTime(){
 }
 
 function newGlobalBest(time){
-	$.post('highscores/',
+	$.post('highscores/' + contest + '/',
 	{'boardname': boardName, 'time': time},
 	function(json) {
 		ret = eval(json);
