@@ -42,7 +42,7 @@ function loadBoard(str){
 		function(json, status, xhr) {
 			if (status == "error") {
 				var msg = "Wystąpił błąd podczas ładowania planszy: ";
-				$("#Content").html(msg + xhr.status + " " + xhr.statusText);
+				$(".bbq-item").html(msg + xhr.status + " " + xhr.statusText);
   			}
 			if (status == "success") {
 				boardName = json.name;
@@ -83,8 +83,8 @@ function drawBoard(board, width, height){
 			newBoard.append(c);
 		}
 	}
-	$("#board").css('width', width*42);
-	$("#board").css('height', height*42);
+	$(".board").css('width', width*42);
+	$(".board").css('height', height*42);
 	
 	return newBoard;
 }
@@ -100,13 +100,13 @@ function boardChanger(){
 }
 
 function boardLoaded(loadedBoard){
-	$("#board").html(drawBoard(loadedBoard.board, loadedBoard.boardWidth, loadedBoard.boardHeight));
-	$("#boardName").text('Plansza: ' + boardName);
+	$(".board").html(drawBoard(loadedBoard.board, loadedBoard.boardWidth, loadedBoard.boardHeight));
+	$(".boardName").text('Plansza: ' + boardName);
 	
 	operateMouse();
 	
-	$("#time").show("slow");
-	$("#bestTime").show("slow");
+	$(".time").show("slow");
+	$(".bestTime").show("slow");
 	startGame();
 	$(".game").show("slow");
 }

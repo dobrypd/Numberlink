@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import simplejson
 from django.http import HttpResponse
+from django.template import RequestContext
 
 from numberlink.contest.models import Contest
 
@@ -26,7 +27,7 @@ def contests():
 
 def main(request):
     return render_to_response('main.html', 
-            {'title':'Witaj!', 'contests':contests()}
+            {'title':'Witaj!', 'contests':contests()}, context_instance=RequestContext(request)
         );
 
 def logina(uname, upas, request):
@@ -35,7 +36,7 @@ def logina(uname, upas, request):
         auth.login(request, user)
         if request.session.test_cookie_worked():
             request.session.delete_test_cookie()
-            request.session['user'] = user.username
+            request.session['user'] = user;
             request.session['logintime'] = strftime("%a, %d %b %Y %H:%M:%S", gmtime())
         return True
     return False

@@ -308,10 +308,10 @@ function newBestTime(){
 }
 
 function writeBestTime(){
-	$("#bestTime").html(timeToStr(bestTime));
+	$(".bestTime").html(timeToStr(bestTime));
 }
 window.setInterval(function(){
-	$("#time").html(getGameTime(false));
+	$(".time").html(getGameTime(false));
 }, 1000);
 
 function init_numberlink(){
@@ -319,13 +319,13 @@ function init_numberlink(){
 	
 	//findBoards();		//szukanie plansz
 	getGameTime(true);	//inicjowanie zegara
-	$("#time").hide("");//chowaj czas
+	$(".time").hide("");//chowaj czas
 	//boardChanger();		//załaduj podstawową planszę
 	
 	/*->obsługa interfejsu*/
 	$("select").change(boardChanger);
-	$("#reset").click(startGame);
-	$("#check").click(function(event){
+	$(".reset").click(startGame);
+	$(".check").click(function(event){
 		if(check()){
 			newBestTime();
 			writeBestTime();
